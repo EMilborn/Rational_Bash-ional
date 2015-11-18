@@ -1,7 +1,7 @@
-// Team Bash-ional -- Ling Cheng, William Xiang
+// Team Bash-ional -- Elias Milborn, William Xiang
 // APCS Pd10
-// HW32 -- Irrationality Stops Here
-// 2015-11-17
+// HW33 -- Do You Even Add Bro?
+// 2015-11-19
 
 public class Rational {
     private int _num, _den; //declare instance vars for numerator and denominator
