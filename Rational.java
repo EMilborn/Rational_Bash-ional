@@ -45,6 +45,41 @@ public class Rational {
         return (double)_num / _den; //return the quotient of _num and _den as a double
     }
     
+        public static int gcdEW(int a, int b){
+	if (a==0){
+	    return b;}
+	if (b==0){
+	    return a;}
+	while (a != b){
+	    if (a > b){
+		a -= b;
+	    }
+	    else{
+		b -= a;
+	    }
+	}
+	return a;
+    }
+
+    public int gcd(){
+        return gcdEW(_num, _den);
+    }
+    
+    public void add(Rational r) {
+        //constant versions of the num and den that do not change throughout the method
+        int num=_num;
+        int den=_den;
+        _num = (num*r.getDen())+(den*r.getNum());
+        _den = (r.getDen()*den);
+    }
+    
+    public void subtract(Rational r) {
+        Rational rNeg = new Rational(-r.getNum(), r.getDen());
+        //negative version of r
+        add(rNeg);
+        //just adds the negative of r
+    }
+    
     public void multiply(Rational r) {
         //multiplies the numerator and denominators of this Rational object and the one given
         _num *= r.getNum();
@@ -56,6 +91,19 @@ public class Rational {
         _num *= r.getDen();
         _den *= r.getNum();
     }
+    
+    public void reduce(){
+        int gcd = gcd();
+        //constant gcd tgat doesnt change
+        if (gcd==0){
+            _den=1;
+        }
+        //prevents divison by zero
+        else{
+            _num/=gcd;
+            _den/=gcd;
+        }
+    }    
     
     public static void main(String[] args) {
         Rational r = new Rational(2,3); //Stores the rational number 2/3
