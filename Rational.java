@@ -1,7 +1,7 @@
-// Team Bash-ional -- Ling Cheng, William Xiang
+// Team Bash-ional -- Elias Milborn, William Xiang
 // APCS Pd10
-// HW32 -- Irrationality Stops Here
-// 2015-11-17
+// HW33 -- Do You Even Add Bro?
+// 2015-11-19
 
 public class Rational {
     private int _num, _den; //declare instance vars for numerator and denominator
@@ -45,20 +45,20 @@ public class Rational {
         return (double)_num / _den; //return the quotient of _num and _den as a double
     }
     
-    public static int gcdEW(int a, int b){
-	if (a==0){
-	    return b;}
-	if (b==0){
-	    return a;}
-	while (a != b){
-	    if (a > b){
-		a -= b;
-	    }
-	    else{
-		b -= a;
-	    }
-	}
-	return a;
+        public static int gcdEW(int a, int b){
+        	if (a==0){
+        	    return b;}
+        	if (b==0){
+        	    return a;}
+        	while (a != b){
+        	    if (a > b){
+        		a -= b;
+        	    }
+        	    else{
+        		b -= a;
+        	    }
+        	}
+        	return a;
     }
 
     public int gcd(){
@@ -95,6 +95,7 @@ public class Rational {
     public void reduce(){
         int gcd = gcd();
         //constant gcd that doesnt change
+
         if (gcd==0){
             _den=1;
         }
