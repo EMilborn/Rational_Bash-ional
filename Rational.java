@@ -8,7 +8,7 @@ public class Rational {
     
     public Rational() {
         //set default number to 0/1
-        _num = 0;
+        _num = 0; 
         _den = 1;
     }
     
@@ -45,6 +45,41 @@ public class Rational {
         return (double)_num / _den; //return the quotient of _num and _den as a double
     }
     
+    public static int gcdEW(int a, int b){
+	if (a==0){
+	    return b;}
+	if (b==0){
+	    return a;}
+	while (a != b){
+	    if (a > b){
+		a -= b;
+	    }
+	    else{
+		b -= a;
+	    }
+	}
+	return a;
+    }
+
+    public int gcd(){
+        return gcdEW(_num, _den);
+    }
+    
+    public void add(Rational r) {
+        //constant versions of the num and den that do not change throughout the method
+        int num=_num;
+        int den=_den;
+        _num = (num*r.getDen())+(den*r.getNum());
+        _den = (r.getDen()*den);
+    }
+    
+    public void subtract(Rational r) {
+        Rational rNeg = new Rational(-r.getNum(), r.getDen());
+        //negative version of r
+        add(rNeg);
+        //just adds the negative of r
+    }
+    
     public void multiply(Rational r) {
         //multiplies the numerator and denominators of this Rational object and the one given
         _num *= r.getNum();
@@ -57,23 +92,56 @@ public class Rational {
         _den *= r.getNum();
     }
     
+    public void reduce(){
+        int gcd = gcd();
+        //constant gcd that doesnt change
+        if (gcd==0){
+            _den=1;
+        }
+        //prevents divison by zero
+        else{
+            _num/=gcd;
+            _den/=gcd;
+        }
+    }
+    
+    public int compareTo(Rational r) {
+        Rational temp = new Rational(getNum(),getDen());
+        temp.subtract(r);
+        
+        if (temp.floatValue() > 0) {
+            return 1;
+        } else if (temp.floatValue() < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+    
     public static void main(String[] args) {
         Rational r = new Rational(2,3); //Stores the rational number 2/3
         Rational s = new Rational(1,2); //Stores the rational number 1/2
-        r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains 1/2
-        System.out.println(r+": should be 2/6");
-        System.out.println(s+" : should be 1/2");
-        r.divide(s); //Divides r by s, changes r to 4/6.  s remains 1/2
-        System.out.println(r+": should be 4/6");
-        System.out.println(s+" : should be 1/2");
+        Rational t = new Rational(4,18); //Stores the rational number 4/18
         
-        //r= 4/6 s=1/2
-        s.multiply(r); //Multiplies s by r, changes s to 4/12.  r remains 4/6
-        System.out.println(s+ " : should be 4/12");
-        System.out.println(r+" : should be 4/6");
-        s.divide(r); // Divides s by r, changes s to 24/248.  r remains 4/6
-        System.out.println(s+" : should be 24/48");
-        System.out.println(r+" : should be 4/6");
+        r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains 1/2
+        System.out.println(r + ": should be 2/6");
+        System.out.println(s + " : should be 1/2");
+        r.divide(s); //Divides r by s, changes r to 4/6.  s remains 1/2
+        System.out.println(r + ": should be 4/6");
+        System.out.println(s + " : should be 1/2");
+        
+        r.add(s);  //Adds r to s, changes r to 7/6.  s remains 1/2
+        System.out.println(r + ": should be 7/6");
+        System.out.println(s + " : should be 1/2");
+        
+        t.reduce(); //Changes t to 2/9
+        System.out.println(t + " : should be 2/9");
+        
+        System.out.println(r.compareTo(s) + ": should be 1");
+        System.out.println(s.compareTo(r) + ": should be -1");
+        System.out.println(t.compareTo(t) + ": should be 0");
+        
+
     }    
     
     
