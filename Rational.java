@@ -1,7 +1,7 @@
-// Team Bash-ional -- Elias Milborn, William Xiang
+// Team Bash-ional -- Elias Milborn, James Hua
 // APCS Pd10
-// HW33 -- Do You Even Add Bro?
-// 2015-11-19
+// HW37 -- Rational Equality
+// 2015-11-25
 
 public class Rational {
     private int _num, _den; //declare instance vars for numerator and denominator
