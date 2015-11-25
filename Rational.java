@@ -119,10 +119,23 @@ public class Rational {
         }
     }
     
+    public boolean equals(Object o){
+        //Check for aliasing
+        public boolean retBool = this == o;
+        
+        //if not aliases check if o is an instance of Rational
+        if (!retVal)
+            //if so then they also have to be equal fractions to return true
+            retBool = (o instanceOf Tile && compareTo(r) == 0);
+        return retBool;
+    }
+    
     public static void main(String[] args) {
         Rational r = new Rational(2,3); //Stores the rational number 2/3
         Rational s = new Rational(1,2); //Stores the rational number 1/2
         Rational t = new Rational(4,18); //Stores the rational number 4/18
+        Rational z = new Rational(8,36);
+        String u = "asdwa";
         
         r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains 1/2
         System.out.println(r + ": should be 2/6");
@@ -141,7 +154,9 @@ public class Rational {
         System.out.println(r.compareTo(s) + ": should be 1");
         System.out.println(s.compareTo(r) + ": should be -1");
         System.out.println(t.compareTo(t) + ": should be 0");
-        
+        System.out.println(t.equals(u) + ": should be false");
+        System.out.println(t.equals(r) + ": should be false");
+        System.out.println(t.equals(z) + ": should be true");
 
     }    
     
